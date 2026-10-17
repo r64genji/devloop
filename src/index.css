@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Colours come from the Finance Tracker design system.
+  Theme-dependent tokens live here as RGB triplets so Tailwind's /opacity
+  modifiers work; tokens that are the same in both themes (brand, stickers,
+  category colours) are plain hex in tailwind.config.js.
+
+  Tailwind name -> design-system token
+    page     bg              surface  surface         raised   chip
+    line     line            control  control-line    strong   border-strong
+    ink      ink             muted    ink-muted       primary  primary
+    link     link            focus    focus           error    error
+*/
+@layer base {
+  :root {
+    --page: 251 246 236;
+    --surface: 255 255 255;
+    --raised: 241 236 225;
+    --line: 242 237 228;
+    --control: 211 202 184;
+    --strong: 138 129 112;
+    --ink: 22 32 44;
+    --muted: 86 96 108;
+    --primary: 11 35 64;
+    --on-primary: 251 246 236;
+    --link: 11 35 64;
+    --focus: 11 35 64;
+    --error: 166 58 46;
+    --on-error: 255 255 255;
+  }
+
+  .dark {
+    --page: 12 17 24;
+    --surface: 22 30 41;
+    --raised: 34 44 56;
+    --line: 34 44 56;
+    --control: 58 69 85;
+    --strong: 107 122 144;
+    --ink: 238 243 248;
+    --muted: 168 180 194;
+    --primary: 243 237 226;
+    --on-primary: 11 35 64;
+    --link: 143 189 245;
+    --focus: 143 189 245;
+    --error: 255 155 138;
+    --on-error: 11 35 64;
+  }
+
+  html {
+    color-scheme: light;
+    /* Keeps the layout from jumping when a dialog locks page scroll */
+    scrollbar-gutter: stable;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-page font-sans text-body text-ink antialiased;
+    /* Tailed l keeps I, l and 1 distinct */
+    font-feature-settings: "ss03";
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-focus ring-offset-[3px] ring-offset-page;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}

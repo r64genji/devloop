@@ -1,0 +1,16 @@
+# dependencies and builds
+node_modules
+dist
+
+# tests
+test-results
+playwright-report
+
+# local tooling and secrets
+.claude/
+.vercel
+.env*
+*.local
+.DS_Store
+
+.vercel
